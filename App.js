@@ -6,8 +6,8 @@ export default function App() {
   
   return (
     <View style={styles.mainContainer}>
-      <LoreBoard rotate={'180deg'}/>
-      <LoreBoard rotate={'0deg'}/>
+      <LoreBoard rotate={"180deg"} playerName={"Player 2"} />
+      <LoreBoard rotate={"0deg"} playerName={"Player 1"} />
     </View>
   );
 }

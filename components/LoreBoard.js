@@ -7,7 +7,7 @@ import PrimaryButton from "./LoreButtons";
 import LoreCounter from "./LoreCounter";
 
 function LoreBoard(prop, ref) {
-  const { rotate, playerName, color } = prop;
+  const { rotate, playerName, playerColor, winner } = prop;
   const [lore, setLore] = useState(0);
 
   React.useImperativeHandle(ref, () => ({
@@ -32,12 +32,19 @@ function LoreBoard(prop, ref) {
       flex: 1,
       alignItems: "center",
     },
+    winnerContainer: {
+      marginBottom: 40,
+    },
   });
 
   function addLore() {
     const newLore = lore + 1;
     if (newLore <= 20) {
       setLore(newLore);
+
+      if (newLore == 20) {
+        winner(playerName, playerColor);
+      }
     }
   }
 
@@ -45,21 +52,22 @@ function LoreBoard(prop, ref) {
     const newLore = lore - 1;
     if (newLore >= 0) {
       setLore(newLore);
+      winner(null, null);
     }
   }
 
   return (
     <View style={styles.boardContainer}>
       <View style={styles.loreContainer}>
-        <PrimaryButton onPress={minusLore} color={color}>
+        <PrimaryButton onPress={minusLore} color={playerColor}>
           -
         </PrimaryButton>
         <LoreCounter>{lore}</LoreCounter>
-        <PrimaryButton onPress={addLore} color={color}>
+        <PrimaryButton onPress={addLore} color={playerColor}>
           +
         </PrimaryButton>
       </View>
-      <Title color={color}>{playerName}</Title>
+      <Title color={playerColor}>{playerName}</Title>
     </View>
   );
 }

@@ -5,6 +5,7 @@ function Title({ children, color }) {
     title: {
       marginLeft: 20,
       marginRight: 20,
+      marginBottom: 16,
       borderRadius: 8,
       fontSize: 24,
       fontWeight: "bold",
